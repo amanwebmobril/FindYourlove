@@ -35,8 +35,12 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final FocusNode _emailNode = FocusNode();
   final FocusNode _passwordNode = FocusNode();
   bool _isObscure = true;
@@ -88,7 +92,52 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
                             obscureText: false,
-                            controller: email,
+                            controller: emailController,
+                            focusNode: _emailNode,
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                MyFlutterApp.profile,
+                                size: 20,
+                                color: Colors.green,
+                              ),
+                              hintText: "Name",
+                              hintStyle: TextStyle(
+                                fontFamily: "NunitoSans",
+                                fontSize: 14,
+                                color: Color(0xFF747688),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                      width: 1, color: Colors.green)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: Color(0xFFE4DFDF),
+                                  )),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(width: 1),
+                              ),
+                            ),
+                            onTap: () => {
+                              if (!currentFocus.hasPrimaryFocus)
+                                {currentFocus.unfocus()}
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Card(
+                          elevation: _emailNode.hasFocus ? 3.0 : 0.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: TextFormField(
+                            obscureText: false,
+                            controller: emailController,
                             focusNode: _emailNode,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
@@ -133,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
                             obscureText: _isObscure,
-                            controller: password,
+                            controller: passwordController,
                             focusNode: _passwordNode,
                             decoration: InputDecoration(
                               // ignore: prefer_const_constructors

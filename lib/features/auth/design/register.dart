@@ -96,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 size: 20,
                                 color: Colors.green,
                               ),
-                              hintText: "abc@gmail.com",
+                              hintText: "Name",
                               hintStyle: TextStyle(
                                 fontFamily: "NunitoSans",
                                 fontSize: 14,

@@ -16,17 +16,15 @@ class AppText_bold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Material(
-        color: Colors.transparent,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: color,
-            fontSize: size,
-            fontFamily: 'NunitoSans',
-            fontWeight: FontWeight.w700,
-          ),
+    return Material(
+      color: Colors.transparent,
+      child: Text(
+        text,
+        style: TextStyle(
+          color: color,
+          fontSize: size,
+          fontFamily: 'NunitoSans',
+          fontWeight: FontWeight.w700,
         ),
       ),
     );

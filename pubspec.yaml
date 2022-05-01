@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.13
+  intl_phone_field: ^3.0.1
 
 
 

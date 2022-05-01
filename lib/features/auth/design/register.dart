@@ -20,20 +20,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool _isChecked = false;
-  void _handleRememberme(bool? value) {
-    log("Handle Remember Me");
-    _isChecked = value!;
-    SharedPreferences.getInstance().then(
-      (prefs) {
-        prefs.setBool("remember_me", value);
-        prefs.setString('email', email.text);
-        prefs.setString('password', password.text);
-      },
-    );
-    setState(() {
-      _isChecked = value;
-    });
-  }
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -43,6 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController();
   final FocusNode _emailNode = FocusNode();
   final FocusNode _passwordNode = FocusNode();
+  final FocusNode _confirmPasswordNode = FocusNode();
   bool _isObscure = true;
 
   @override
@@ -149,7 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               hintStyle: TextStyle(
                                 fontFamily: "NunitoSans",
                                 fontSize: 14,
-                                color: Color(0xFF747688),
+                                color: Colors.green,
                               ),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
@@ -179,7 +166,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Card(
                           elevation: _passwordNode.hasFocus ? 3.0 : 0.0,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(5)),
                           child: TextFormField(
                             obscureText: _isObscure,
                             controller: passwordController,
@@ -208,14 +195,71 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                               focusedBorder: const OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      BorderRadius.all(Radius.circular(5)),
                                   borderSide: BorderSide(
                                     width: 1,
-                                    color: Colors.black,
+                                    color: Colors.green,
                                   )),
                               enabledBorder: const OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: Color(0xFFE4DFDF),
+                                  )),
+                              errorBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(width: 1),
+                              ),
+                            ),
+                            onTap: () => {
+                              if (!currentFocus.hasPrimaryFocus)
+                                {currentFocus.unfocus()}
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Card(
+                          elevation: _confirmPasswordNode.hasFocus ? 3.0 : 0.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          child: TextFormField(
+                            obscureText: _isObscure,
+                            controller: confirmPasswordController,
+                            focusNode: _confirmPasswordNode,
+                            decoration: InputDecoration(
+                              // ignore: prefer_const_constructors
+                              prefixIcon: Icon(
+                                Icons.lock_outline_sharp,
+                                color: Colors.green,
+                              ),
+                              suffixIcon: IconButton(
+                                color: Colors.grey,
+                                icon: Icon(_isObscure
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                },
+                              ),
+                              hintText: "Confirm Password",
+                              hintStyle: const TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF747688),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: Colors.green,
+                                  )),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
                                   borderSide: BorderSide(
                                     width: 1,
                                     color: Color(0xFFE4DFDF),

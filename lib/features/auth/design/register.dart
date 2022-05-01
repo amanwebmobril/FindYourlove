@@ -7,6 +7,7 @@ import 'package:findyourlove/components/helpers/appcolor.dart';
 import 'package:findyourlove/components/helpers/button.dart';
 import 'package:findyourlove/components/icons.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'forgotpassword.dart';
@@ -20,7 +21,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool _isChecked = false;
-
+  late String onlyphone;
+  late String isd;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController numberController = TextEditingController();
@@ -30,6 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final FocusNode _emailNode = FocusNode();
   final FocusNode _passwordNode = FocusNode();
   final FocusNode _confirmPasswordNode = FocusNode();
+  final FocusNode _phoneNode = FocusNode();
   bool _isObscure = true;
 
   @override
@@ -116,6 +119,75 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       ),
+                      Card(
+                          elevation: _phoneNode.hasFocus ? 3.0 : 0.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: IntlPhoneField(
+                            focusNode: _phoneNode,
+                            decoration: InputDecoration(
+                              prefixIcon: Padding(
+                                padding:
+                                    const EdgeInsetsDirectional.only(start: 10),
+                                child: Image.asset(
+                                  "assets/phone.png",
+                                  //height: 15.69,
+                                  //width: 17.63,
+                                ),
+                              ),
+                              hintText: "Phone Number",
+                              hintStyle: const TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF747688),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: Colors.green,
+                                  )),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: Color(0xFFE4DFDF),
+                                  )),
+                              errorBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.white),
+                              ),
+                              focusedErrorBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 1,
+                                  color: Colors.green,
+                                ),
+                              ),
+                            ),
+                            onTap: () => {
+                              if (!currentFocus.hasPrimaryFocus)
+                                {currentFocus.unfocus()}
+                            },
+                            validator: (_phonevalidate) {
+                              if (_phonevalidate == null) {
+                                return 'Enter a valid number';
+                              }
+                              if (_phonevalidate.runtimeType is int == true) {
+                                return 'Numbers Only*******';
+                              }
+                              return null;
+                            },
+                            initialCountryCode: 'IN',
+                            onChanged: (phone) {
+                              // print(phone.number);
+                              // print(phone.countryCode);
+                              setState(() {
+                                onlyphone = phone.number;
+                                isd = phone.countryCode;
+                              });
+                            },
+                          )),
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Card(
@@ -271,6 +343,16 @@ class _RegisterPageState extends State<RegisterPage> {
                             onTap: () => {
                               if (!currentFocus.hasPrimaryFocus)
                                 {currentFocus.unfocus()}
+                            },
+                            validator: (_confirmpasswordvalid) {
+                              if (_confirmpasswordvalid == null ||
+                                  _confirmpasswordvalid.isEmpty) {
+                                return 'Enter a valid Password';
+                              } else if (_confirmpasswordvalid.length < 6 &&
+                                  _confirmpasswordvalid != passwordController) {
+                                return 'Enter the same password as above';
+                              }
+                              return null;
                             },
                           ),
                         ),

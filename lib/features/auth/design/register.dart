@@ -29,6 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final FocusNode _nameNode = FocusNode();
   final FocusNode _emailNode = FocusNode();
   final FocusNode _passwordNode = FocusNode();
   final FocusNode _confirmPasswordNode = FocusNode();
@@ -51,9 +52,12 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Stack(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height,
+                  height: 760,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.asset("assets/loginimg.png"),
+                  child: Image.asset(
+                    "assets/loginimg.png",
+                    fit: BoxFit.fill,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 200.0),
@@ -77,13 +81,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Card(
-                          elevation: _emailNode.hasFocus ? 3.0 : 0.0,
+                          elevation: _nameNode.hasFocus ? 3.0 : 0.0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
                             obscureText: false,
-                            controller: emailController,
-                            focusNode: _emailNode,
+                            controller: nameController,
+                            focusNode: _nameNode,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 MyFlutterApp.profile,
@@ -116,15 +120,23 @@ class _RegisterPageState extends State<RegisterPage> {
                               if (!currentFocus.hasPrimaryFocus)
                                 {currentFocus.unfocus()}
                             },
+                            validator: (_fullnamevalid) {
+                              if (_fullnamevalid == null ||
+                                  _fullnamevalid.isEmpty) {
+                                return 'Enter a valid name';
+                              }
+                              return null;
+                            },
                           ),
                         ),
                       ),
-                      Card(
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Card(
                           elevation: _phoneNode.hasFocus ? 3.0 : 0.0,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(5)),
                           child: IntlPhoneField(
-                            focusNode: _phoneNode,
                             decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding:
@@ -135,59 +147,44 @@ class _RegisterPageState extends State<RegisterPage> {
                                   //width: 17.63,
                                 ),
                               ),
+                              counterText: "",
                               hintText: "Phone Number",
                               hintStyle: const TextStyle(
+                                fontFamily: "NuitoSans",
                                 fontSize: 14,
                                 color: Color(0xFF747688),
                               ),
                               focusedBorder: const OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      BorderRadius.all(Radius.circular(5)),
                                   borderSide: BorderSide(
                                     width: 1,
                                     color: Colors.green,
                                   )),
                               enabledBorder: const OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      BorderRadius.all(Radius.circular(5)),
                                   borderSide: BorderSide(
                                     width: 1,
                                     color: Color(0xFFE4DFDF),
                                   )),
                               errorBorder: const OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(width: 1, color: Colors.white),
+                                    BorderSide(width: 1, color: Colors.grey),
                               ),
                               focusedErrorBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: Colors.green,
-                                ),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.white),
                               ),
                             ),
                             onTap: () => {
                               if (!currentFocus.hasPrimaryFocus)
                                 {currentFocus.unfocus()}
                             },
-                            validator: (_phonevalidate) {
-                              if (_phonevalidate == null) {
-                                return 'Enter a valid number';
-                              }
-                              if (_phonevalidate.runtimeType is int == true) {
-                                return 'Numbers Only*******';
-                              }
-                              return null;
-                            },
                             initialCountryCode: 'IN',
-                            onChanged: (phone) {
-                              // print(phone.number);
-                              // print(phone.countryCode);
-                              setState(() {
-                                onlyphone = phone.number;
-                                isd = phone.countryCode;
-                              });
-                            },
-                          )),
+                          ),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Card(
@@ -204,11 +201,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 size: 20,
                                 color: Colors.green,
                               ),
-                              hintText: "Name",
+                              hintText: "Enter your email",
                               hintStyle: TextStyle(
                                 fontFamily: "NunitoSans",
                                 fontSize: 14,
-                                color: Colors.green,
+                                color: Color(0xFF747688),
                               ),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
@@ -349,6 +346,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   _confirmpasswordvalid.isEmpty) {
                                 return 'Enter a valid Password';
                               } else if (_confirmpasswordvalid.length < 6 &&
+                                  // ignore: unrelated_type_equality_checks
                                   _confirmpasswordvalid != passwordController) {
                                 return 'Enter the same password as above';
                               }
@@ -377,6 +375,61 @@ class _RegisterPageState extends State<RegisterPage> {
                           )
                         ],
                       ),
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      Center(
+                          child: AppTextSemiBold(
+                              color: Colors.white,
+                              size: 14,
+                              text: "Sign In With")),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              height: 48,
+                              width: 48,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.white),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              height: 48,
+                              width: 48,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.white),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              height: 48,
+                              width: 48,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      )
                     ]),
                   ),
                 ),

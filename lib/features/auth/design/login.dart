@@ -303,10 +303,9 @@ class _LoginPageState extends State<LoginPage> {
                               height: 48,
                               width: 48,
                               decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage("assets/Vector.png")),
                                   borderRadius: BorderRadius.circular(50),
                                   color: Colors.white),
+                              // child: ImageIcon(AssetImage("assets/Vector.png")),
                             ),
                           )
                         ],

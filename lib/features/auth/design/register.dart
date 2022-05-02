@@ -193,7 +193,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             focusNode: _emailNode,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
-                                MyFlutterApp.profile,
+                                Icons.email_outlined,
                                 size: 20,
                                 color: Colors.green,
                               ),

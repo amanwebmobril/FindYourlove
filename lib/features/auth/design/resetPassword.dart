@@ -194,10 +194,6 @@ class _resetPasswordState extends State<resetPassword> {
                                     builder: (context) => const LoginPage())),
                             width: 247),
                         const SizedBox(height: 25),
-                        GestureDetector(
-                            onTap: () {},
-                            child: AppTextSemiBold(
-                                size: 16, text: "Didn't receive?"))
                       ],
                     ),
                   ),

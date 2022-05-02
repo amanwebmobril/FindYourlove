@@ -274,12 +274,18 @@ class _LoginPageState extends State<LoginPage> {
                           GestureDetector(
                             onTap: () {},
                             child: Container(
-                              height: 48,
-                              width: 48,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.white),
-                            ),
+                                height: 48,
+                                width: 48,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white),
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 28,
+                                    width: 28,
+                                    child: Image.asset("assets/facebook.png"),
+                                  ),
+                                )),
                           ),
                           const SizedBox(
                             width: 15,
@@ -287,12 +293,18 @@ class _LoginPageState extends State<LoginPage> {
                           GestureDetector(
                             onTap: () {},
                             child: Container(
-                              height: 48,
-                              width: 48,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.white),
-                            ),
+                                height: 48,
+                                width: 48,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white),
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 28,
+                                    width: 28,
+                                    child: Image.asset("assets/google.png"),
+                                  ),
+                                )),
                           ),
                           const SizedBox(
                             width: 15,
@@ -300,13 +312,18 @@ class _LoginPageState extends State<LoginPage> {
                           GestureDetector(
                             onTap: () {},
                             child: Container(
-                              height: 48,
-                              width: 48,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.white),
-                              // child: ImageIcon(AssetImage("assets/Vector.png")),
-                            ),
+                                height: 48,
+                                width: 48,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white),
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 28,
+                                    width: 28,
+                                    child: Image.asset("assets/Vector.png"),
+                                  ),
+                                )),
                           )
                         ],
                       )

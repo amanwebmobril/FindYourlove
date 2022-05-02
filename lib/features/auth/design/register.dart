@@ -8,9 +8,6 @@ import 'package:findyourlove/components/helpers/button.dart';
 import 'package:findyourlove/components/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'forgotpassword.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -20,7 +17,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  bool _isChecked = false;
   late String onlyphone;
   late String isd;
   final TextEditingController nameController = TextEditingController();
@@ -392,12 +388,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           GestureDetector(
                             onTap: () {},
                             child: Container(
-                              height: 48,
-                              width: 48,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.white),
-                            ),
+                                height: 48,
+                                width: 48,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white),
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 28,
+                                    width: 28,
+                                    child: Image.asset("assets/facebook.png"),
+                                  ),
+                                )),
                           ),
                           const SizedBox(
                             width: 15,
@@ -405,12 +407,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           GestureDetector(
                             onTap: () {},
                             child: Container(
-                              height: 48,
-                              width: 48,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.white),
-                            ),
+                                height: 48,
+                                width: 48,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white),
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 28,
+                                    width: 28,
+                                    child: Image.asset("assets/google.png"),
+                                  ),
+                                )),
                           ),
                           const SizedBox(
                             width: 15,
@@ -418,12 +426,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           GestureDetector(
                             onTap: () {},
                             child: Container(
-                              height: 48,
-                              width: 48,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.white),
-                            ),
+                                height: 48,
+                                width: 48,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white),
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 28,
+                                    width: 28,
+                                    child: Image.asset("assets/Vector.png"),
+                                  ),
+                                )),
                           )
                         ],
                       ),

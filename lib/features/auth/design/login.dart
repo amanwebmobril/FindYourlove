@@ -5,6 +5,7 @@ import 'package:findyourlove/components/apptext_extra_bold.dart';
 import 'package:findyourlove/components/apptext_semibold.dart';
 import 'package:findyourlove/components/helpers/button.dart';
 import 'package:findyourlove/features/auth/design/register.dart';
+import 'package:findyourlove/features/profileSetup/design/personalInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -235,7 +236,10 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       AppButton(
                           btnName: "Signin",
-                          onPressed: () => Container(),
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PresonalInformation())),
                           width: 247),
                       const SizedBox(height: 24),
                       Row(

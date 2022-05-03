@@ -5,10 +5,10 @@
 
 // @dart = 2.16
 
-// When `package:findyourlove/init/main.dart` defines `main`, that definition is shadowed by the definition below.
-export 'package:findyourlove/init/main.dart';
+// When `package:findyourlove/main.dart` defines `main`, that definition is shadowed by the definition below.
+export 'package:findyourlove/main.dart';
 
-import 'package:findyourlove/init/main.dart' as entrypoint;
+import 'package:findyourlove/main.dart' as entrypoint;
 import 'dart:io'; // flutter_ignore: dart_io_import.
 import 'package:shared_preferences_android/shared_preferences_android.dart';
 import 'package:shared_preferences_ios/shared_preferences_ios.dart';

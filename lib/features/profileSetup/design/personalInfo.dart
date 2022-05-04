@@ -21,8 +21,8 @@ class _PresonalInformationState extends State<PresonalInformation> {
   bool othersSelected = true;
   double _currentSliderHeight = 0;
   double _currentSliderWeight = 0;
-
   double feet = 0;
+
   @override
   Widget build(BuildContext context) {
     int kg = _currentSliderWeight.toInt();

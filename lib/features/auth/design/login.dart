@@ -239,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PresonalInformation())),
+                                  builder: (context) => const PresonalInformation())),
                           width: 247),
                       const SizedBox(height: 24),
                       Row(

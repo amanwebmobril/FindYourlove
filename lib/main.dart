@@ -1,5 +1,4 @@
-import 'package:findyourlove/features/auth/design/splash.dart';
-import 'package:findyourlove/features/profileSetup/design/profilepage.dart';
+import 'package:findyourlove/aman/match.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      home: const ProfilePageSetting(),
+      home: const Match123(),
     );
   }
 }
